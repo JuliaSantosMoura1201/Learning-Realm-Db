@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNotesActivity">
+
+
+    <EditText
+        android:id="@+id/title_EditText"
+        android:layout_width="302dp"
+        android:layout_height="50dp"
+        android:hint="Title"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/description_EditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/description_EditText"
+        android:layout_width="302dp"
+        android:layout_height="50dp"
+        android:hint="Description"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/saveNotesButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_EditText" />
+
+    <Button
+        android:id="@+id/saveNotesButton"
+        android:layout_width="302dp"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Save Notes"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_EditText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
