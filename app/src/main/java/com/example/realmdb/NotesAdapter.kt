@@ -4,14 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.notes_rv_layout.view.*
 
-class NotesAdapter (private val notesList: RealmResults<Notes>, private val width: Int)
+class NotesAdapter (private val context: Context, private val notesList: RealmResults<Notes>, private val width: Int, private val listener: NotesListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -28,7 +26,15 @@ class NotesAdapter (private val notesList: RealmResults<Notes>, private val widt
         holder.itemView.titleTV.text = notesList[position]!!.title
         holder.itemView.descTV.text = notesList[position]!!.description
         holder.itemView.idTV.text = notesList[position]!!.id.toString()
+        holder.itemView.deleteIV.setOnClickListener {
+            notesList[position]!!.id?.let { it1 -> listener.deleteNote(it1) }
+        }
     }
 
     class ViewHolder(v: View): RecyclerView.ViewHolder(v)
+
+    interface NotesListener{
+        fun deleteNote(id: Int)
+    }
 }
+

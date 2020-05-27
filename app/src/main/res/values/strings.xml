@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RealmDB</string>
+    <string name="txt_title">Insane Developer</string>
+    <string name="txt_description">skbdksabdksbdkbskbdkbskbdksb Insane Developer</string>
+    <string name="txt_id">1</string>
+    <string name="cd_delete">Delete note</string>
+    <string name="btn_delete_all">Delete All</string>
 </resources>
