@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:padding="10dp"
-                android:text="@string/txt_title"
+                android:text="@string/hint_title"
                 android:textColor="@android:color/black"
                 android:textSize="28sp"
                 app:layout_constraintEnd_toStartOf="@+id/idResearchTV"
@@ -91,10 +91,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
                 android:padding="10dp"
-                android:text="@string/txt_description"
+                android:text="@string/hint_description"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/deleteIV"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titleResearchTV" />
 
@@ -109,17 +108,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/deleteIV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:contentDescription="@string/cd_delete"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_delete_black_24dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
