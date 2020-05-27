@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">RealmDB</string>
-    <string name="txt_title">Insane Developer</string>
-    <string name="txt_description">skbdksabdksbdkbskbdkbskbdksb Insane Developer</string>
     <string name="txt_id">1</string>
-    <string name="cd_delete">Delete note</string>
     <string name="btn_delete_all">Delete All</string>
     <string name="btn_research">Research note</string>
-    <string name="hint_search">Type her what you are looking for</string>
+    <string name="hint_search">Type here what you are looking for</string>
     <string name="btn_search">Search</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="btn_edit">Edit</string>
 </resources>

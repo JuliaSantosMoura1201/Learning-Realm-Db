@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var notesRV: RecyclerView
     private lateinit var notesList: ArrayList<Notes>
     private lateinit var realm: Realm
+    var titleDialog = ""
+    var descriptionDialog = ""
+    var idDialog = 0
+    val editDialog= EditDialog.newInstance(this)
+    val deleteDialog= DeleteDialog.newInstance(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +39,12 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
         notesRV.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-
         getAllNotes()
-
     }
 
     private fun getAllNotes(){
@@ -46,19 +53,15 @@ class MainActivity : AppCompatActivity() {
 
         val results: RealmResults<Notes> = realm.where<Notes>(Notes::class.java).findAll()
 
-        notesRV.adapter = NotesAdapter(this, results, getScreenWidth(), object : NotesAdapter.NotesListener {
+        notesRV.adapter = NotesAdapter(results, getScreenWidth(), object : NotesAdapter.NotesListener {
             override fun deleteNote(id: Int) {
+                supportFragmentManager.beginTransaction().add(deleteDialog, null).commitAllowingStateLoss()
+                idDialog = id
+            }
 
-                val tasks: RealmResults<Notes> = realm.where(Notes::class.java).findAll()
-                val task: Notes? = tasks.where().equalTo("id", id).findFirst()
-
-                if(task!= null){
-                    realm.beginTransaction()
-                    task.deleteFromRealm()
-                }
-
-                realm.commitTransaction()
-                getAllNotes()
+            override fun editNote(id: Int) {
+                supportFragmentManager.beginTransaction().add(editDialog, null).commitAllowingStateLoss()
+                idDialog = id
             }
 
         })
@@ -89,4 +92,33 @@ class MainActivity : AppCompatActivity() {
 
         return true
     }
+
+    fun editRealm(){
+        val notes: RealmResults<Notes> = realm.where(Notes::class.java).findAll()
+        val note: Notes? = notes.where().equalTo("id", idDialog).findFirst()
+
+        if(note != null){
+            realm.beginTransaction()
+            note.title = titleDialog
+            note.description = descriptionDialog
+            realm.copyToRealmOrUpdate(note)
+        }
+        realm.commitTransaction()
+        getAllNotes()
+    }
+
+    fun deleteRealm(){
+        val tasks: RealmResults<Notes> = realm.where(Notes::class.java).findAll()
+        val task: Notes? = tasks.where().equalTo("id", idDialog).findFirst()
+
+        if(task!= null){
+            realm.beginTransaction()
+            task.deleteFromRealm()
+        }
+
+        realm.commitTransaction()
+        getAllNotes()
+    }
+
+
 }
