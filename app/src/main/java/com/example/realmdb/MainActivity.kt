@@ -78,10 +78,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        realm.beginTransaction()
-        realm.deleteAll()
-        realm.commitTransaction()
-        getAllNotes()
+        if(item.itemId == R.id.deleteOption){
+            realm.beginTransaction()
+            realm.deleteAll()
+            realm.commitTransaction()
+            getAllNotes()
+        }else{
+            startActivity(Intent(this, ResearchActivity::class.java))
+        }
+
         return true
     }
 }

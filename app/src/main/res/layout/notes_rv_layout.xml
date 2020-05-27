@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/titleTV"
+            android:id="@+id/titleResearchTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
@@ -21,12 +21,12 @@
             android:text="@string/txt_title"
             android:textColor="@android:color/black"
             android:textSize="28sp"
-            app:layout_constraintEnd_toStartOf="@+id/idTV"
+            app:layout_constraintEnd_toStartOf="@+id/idResearchTV"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/descTV"
+            android:id="@+id/descResearchTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="serif"
@@ -36,10 +36,10 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/deleteIV"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+            app:layout_constraintTop_toBottomOf="@+id/titleResearchTV" />
 
         <TextView
-            android:id="@+id/idTV"
+            android:id="@+id/idResearchTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"

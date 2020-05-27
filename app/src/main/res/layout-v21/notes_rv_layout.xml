@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/titleTV"
+            android:id="@+id/titleResearchTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -23,14 +23,14 @@
             android:text="@string/txt_title"
             android:textColor="@android:color/black"
             android:textSize="28sp"
-            app:layout_constraintBottom_toTopOf="@+id/descTV"
-            app:layout_constraintEnd_toStartOf="@+id/idTV"
+            app:layout_constraintBottom_toTopOf="@+id/descResearchTV"
+            app:layout_constraintEnd_toStartOf="@+id/idResearchTV"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/descTV"
+            android:id="@+id/descResearchTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="serif"
@@ -40,11 +40,11 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/deleteIV"
-            app:layout_constraintStart_toStartOf="@+id/titleTV"
-            app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+            app:layout_constraintStart_toStartOf="@+id/titleResearchTV"
+            app:layout_constraintTop_toBottomOf="@+id/titleResearchTV" />
 
         <TextView
-            android:id="@+id/idTV"
+            android:id="@+id/idResearchTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -52,7 +52,7 @@
             android:text="@string/txt_id"
             android:textColor="@android:color/holo_red_light"
             android:textSize="28sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/titleTV"
+            app:layout_constraintBaseline_toBaselineOf="@+id/titleResearchTV"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
