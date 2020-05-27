@@ -5,4 +5,7 @@
     <string name="txt_id">1</string>
     <string name="cd_delete">Delete note</string>
     <string name="btn_delete_all">Delete All</string>
+    <string name="btn_research">Research note</string>
+    <string name="hint_search">Type her what you are looking for</string>
+    <string name="btn_search">Search</string>
 </resources>

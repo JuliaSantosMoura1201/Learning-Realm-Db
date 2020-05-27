@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.notes_rv_layout.view.*
@@ -23,9 +22,9 @@ class NotesAdapter (private val context: Context, private val notesList: RealmRe
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.itemView.cardNotes.layoutParams.width = (width/2) - 30
-        holder.itemView.titleTV.text = notesList[position]!!.title
-        holder.itemView.descTV.text = notesList[position]!!.description
-        holder.itemView.idTV.text = notesList[position]!!.id.toString()
+        holder.itemView.titleResearchTV.text = notesList[position]!!.title
+        holder.itemView.descResearchTV.text = notesList[position]!!.description
+        holder.itemView.idResearchTV.text = notesList[position]!!.id.toString()
         holder.itemView.deleteIV.setOnClickListener {
             notesList[position]!!.id?.let { it1 -> listener.deleteNote(it1) }
         }
