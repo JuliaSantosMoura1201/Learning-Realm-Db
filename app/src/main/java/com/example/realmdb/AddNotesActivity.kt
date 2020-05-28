@@ -5,16 +5,19 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.os.postDelayed
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_add_notes.*
 import java.io.IOException
 import java.lang.Exception
 
-class AddNotesActivity : AppCompatActivity() {
+class AddNotesActivity : AppCompatActivity(){
 
     private lateinit var titleEditText: EditText
     private lateinit var descriptionEditText: EditText
@@ -35,6 +38,8 @@ class AddNotesActivity : AppCompatActivity() {
         saveNotesButton = findViewById(R.id.saveNotesButton)
         realm = Realm.getDefaultInstance()
 
+
+
         saveNotesButton.setOnClickListener {
             addNotesToDB()
         }
@@ -47,6 +52,13 @@ class AddNotesActivity : AppCompatActivity() {
             val intent = Intent(this, MapsActivity::class.java)
             intent.putExtra("address", editPlace.text.toString())
             startActivity(intent)
+        }
+
+        switch1.setOnClickListener {
+            NotificationHelper.createSampleDataNotification(this@AddNotesActivity,
+                getString(R.string.hint_title),
+                getString(R.string.hint_description),
+                getString(R.string.hint_date), false)
         }
     }
 
