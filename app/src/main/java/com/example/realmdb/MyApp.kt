@@ -1,6 +1,8 @@
 package com.example.realmdb
 
 import android.app.Application
+import androidx.core.app.NotificationManagerCompat
+import com.example.realmdb.notify.NotificationHelper
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -17,5 +19,9 @@ class MyApp: Application(){
             .build()
 
         Realm.setDefaultConfiguration(configuration)
+
+        NotificationHelper.createNotificationChannel(this,
+            NotificationManagerCompat.IMPORTANCE_DEFAULT, false,
+            getString(R.string.app_name), "App notification channel")
     }
 }
