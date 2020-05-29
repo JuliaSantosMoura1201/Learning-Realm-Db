@@ -1,20 +1,22 @@
 package com.example.realmdb
 
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import com.example.realmdb.notify.AlarmScheduler
 import com.example.realmdb.notify.NotificationHelper
 import io.realm.Realm
+import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_add_notes.*
 import java.io.IOException
 import java.lang.Exception
+import java.util.*
 
 class AddNotesActivity : AppCompatActivity(){
 
@@ -22,7 +24,7 @@ class AddNotesActivity : AppCompatActivity(){
     private var filePath: Uri? = null
     private var notificate: Boolean = false
     private var alarm: Boolean = false
-
+    var id : Int = 0
 
     companion object{
         const val PICK_IMAGE_REQUEST = 1234
@@ -33,6 +35,15 @@ class AddNotesActivity : AppCompatActivity(){
         setContentView(R.layout.activity_add_notes)
 
         realm = Realm.getDefaultInstance()
+
+
+        val intent = intent
+        val bundle :Bundle? = intent.extras
+        id = bundle?.getInt("id") ?:0
+
+        if(validateId()){
+            fieldComponents()
+        }
 
         saveNotesButton.setOnClickListener {
             addNotesToDB()
@@ -62,6 +73,21 @@ class AddNotesActivity : AppCompatActivity(){
             switchTime.setImageResource(R.drawable.ic_alarm_on_black_24dp)
             alarm = true
         }
+
+        editDate.setOnClickListener {
+            dpd()
+        }
+
+        editTime.setOnClickListener{
+            displayTimeDialog()
+        }
+    }
+
+    private fun validateId(): Boolean{
+        if(id != 0){
+            return true
+        }
+        return false
     }
 
     private fun showMap(){
@@ -70,10 +96,25 @@ class AddNotesActivity : AppCompatActivity(){
         startActivity(intent)
     }
 
+    private fun fieldComponents(){
+        val tasks: RealmResults<Notes> = realm.where(Notes::class.java).findAll()
+        val notes: Notes? = tasks.where().equalTo("id", id).findFirst()
+
+        title_EditText.setText(notes?.title)
+        description_EditText.setText(notes?.description)
+        editPlace.setText(notes?.place)
+        editDate.text = notes?.day.plus("/").plus(notes?.month).plus("/").plus(notes?.year)
+        editTime.text = notes?.hour.plus(":").plus(notes?.minute)
+    }
+
     private fun addNotesToDB(){
         try {
             realm.beginTransaction()
-            realm.copyToRealmOrUpdate(setNotesData(autoIncrementId()))
+
+            if(!validateId()){
+               id = autoIncrementId()
+            }
+            realm.copyToRealmOrUpdate(setNotesData(id))
             realm.commitTransaction()
 
             backMainActivity()
@@ -81,12 +122,6 @@ class AddNotesActivity : AppCompatActivity(){
         }catch (e: Exception){
             Toast.makeText(this, "Failed $e", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun createNotification(){
-
-
-
     }
 
     private fun autoIncrementId(): Int{
@@ -100,6 +135,7 @@ class AddNotesActivity : AppCompatActivity(){
         }
         return nextID
     }
+
     private fun setNotesData(nextID: Int): Notes{
         val notes = Notes()
         notes.title = title_EditText.text.toString()
@@ -167,5 +203,41 @@ class AddNotesActivity : AppCompatActivity(){
         viewFlipper.displayedChild = viewFlipper.displayedChild + 1
         val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filePath)
         imageNote.setImageBitmap(bitmap)
+    }
+
+    private fun dpd(){
+        val c = Calendar.getInstance()
+        val myYear = c.get(Calendar.YEAR)
+        val myMonth = c.get(Calendar.MONTH)
+        val myDay = c.get(Calendar.DAY_OF_MONTH)
+        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+
+            var newMonth: String = month.toString()
+            if(month <= 9){
+                newMonth = "0$month"
+            }
+            editDate.text  = dayOfMonth.toString().plus("/").plus(newMonth).plus("/").plus(year)
+        }, myYear, myMonth, myDay)
+        return dpd.show()
+    }
+
+    private fun displayTimeDialog(){
+        val hour  = 0
+        val min = 0
+        val tpd = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+            var newHour = hourOfDay.toString()
+            var newMinute = minute.toString()
+
+
+            if(hourOfDay < 10){
+                newHour = "0$newHour"
+            }
+            if (minute < 10){
+                newMinute = "0$newMinute"
+            }
+
+            editTime.text = newHour.plus(":").plus(newMinute)
+        }, hour, min, false)
+        tpd.show()
     }
 }

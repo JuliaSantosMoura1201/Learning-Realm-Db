@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     var titleDialog = ""
     var descriptionDialog = ""
     var idDialog = 0
-    val editDialog= EditDialog.newInstance(this)
     val deleteDialog= DeleteDialog.newInstance(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,8 +59,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun editNote(id: Int) {
-                supportFragmentManager.beginTransaction().add(editDialog, null).commitAllowingStateLoss()
                 idDialog = id
+                val intent = Intent(this@MainActivity, AddNotesActivity::class.java)
+                intent.putExtra("id", idDialog)
+                startActivity(intent)
             }
 
         })
@@ -91,20 +92,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         return true
-    }
-
-    fun editRealm(){
-        val notes: RealmResults<Notes> = realm.where(Notes::class.java).findAll()
-        val note: Notes? = notes.where().equalTo("id", idDialog).findFirst()
-
-        if(note != null){
-            realm.beginTransaction()
-            note.title = titleDialog
-            note.description = descriptionDialog
-            realm.copyToRealmOrUpdate(note)
-        }
-        realm.commitTransaction()
-        getAllNotes()
     }
 
     fun deleteRealm(){

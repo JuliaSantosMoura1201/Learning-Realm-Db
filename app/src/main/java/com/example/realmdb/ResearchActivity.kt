@@ -1,5 +1,6 @@
 package com.example.realmdb
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,6 +17,7 @@ class ResearchActivity : AppCompatActivity() {
     private var listOfItems = arrayOf("id", "title")
     var type = ""
     private lateinit var realm: Realm
+    var idDialog = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,12 @@ class ResearchActivity : AppCompatActivity() {
         }
 
         btn_search.setOnClickListener { defineResearchType() }
+
+        cardViewResearch.setOnClickListener {
+            val intent = Intent(this, AddNotesActivity::class.java)
+            intent.putExtra("id", idDialog)
+            startActivity(intent)
+        }
     }
 
 
@@ -87,6 +95,7 @@ class ResearchActivity : AppCompatActivity() {
 
     private fun fieldCardView(task: Notes){
         cardViewResearch.visibility = View.VISIBLE
+        idDialog = task.id!!
         titleResearchTV.text = task.title
         descResearchTV.text = task.description
         idResearchTV.text = task.id.toString()
