@@ -39,28 +39,30 @@
         android:hint="@string/hint_description"
         android:inputType="textMultiLine"
         android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/editPlace"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_EditText"
-        app:layout_constraintBottom_toTopOf="@id/editDate"/>
+        app:layout_constraintTop_toBottomOf="@+id/title_EditText" />
 
-    <EditText
+    <TextView
         android:id="@+id/editDate"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
+        android:gravity="center_vertical"
         android:hint="@string/hint_date"
-        android:inputType="date"
-        android:autofillHints="@string/hint_date"
+        android:padding="5dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/editTime"
         app:layout_constraintEnd_toStartOf="@+id/switch1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_EditText" />
+        app:layout_constraintTop_toBottomOf="@+id/editPlace" />
 
     <ImageView
         android:id="@+id/switch1"
@@ -75,10 +77,10 @@
         app:layout_constraintTop_toTopOf="@id/editDate"
         app:srcCompat="@drawable/ic_notifications_off_black_24dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTime"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
@@ -86,8 +88,9 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="@string/hint_time"
-        android:autofillHints="@string/hint_time"
-        android:inputType="time"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/editPlace"
         app:layout_constraintEnd_toStartOf="@+id/switchTime"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,20 +112,20 @@
     <EditText
         android:id="@+id/editPlace"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:ems="10"
+        android:padding="10dp"
         android:hint="@string/hint_place"
         android:autofillHints="@string/hint_place"
         android:inputType="textPostalAddress"
-        app:layout_constraintBottom_toTopOf="@id/viewFlipper"
+        app:layout_constraintBottom_toTopOf="@id/editDate"
         app:layout_constraintEnd_toStartOf="@id/seeMapIV"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTime" />
+        app:layout_constraintTop_toBottomOf="@id/description_EditText" />
 
     <ImageView
         android:id="@+id/seeMapIV"
@@ -145,7 +148,7 @@
         app:layout_constraintBottom_toTopOf="@+id/saveNotesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPlace">
+        app:layout_constraintTop_toBottomOf="@+id/editTime">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -198,4 +201,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
