@@ -10,8 +10,11 @@ open class Notes (
     var id: Int? = null,
     var title: String? = null,
     var description:String?=null,
-    var date: String? = null,
-    var time: String? = null,
+    var day: String? = null,
+    var month: String?= null,
+    var year: String? = null,
+    var hour: String? = null,
+    var minute: String? = null,
     var place: String? = null,
     var image: String? = null
 ): RealmObject()

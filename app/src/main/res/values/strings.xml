@@ -18,4 +18,14 @@
     <string name="activeAlarm">activate Alarm</string>
     <string name="showMap">showMap</string>
     <string name="title_activity_maps">Map</string>
+    <string name="action_notify_task">com.example.realmdb.action.DO</string>
+    <string-array name="days">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
 </resources>

@@ -1,14 +1,16 @@
-package com.example.realmdb
+package com.example.realmdb.notify
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.icu.text.CaseMap
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.realmdb.MainActivity
+import com.example.realmdb.Notes
+import com.example.realmdb.R
 
 object NotificationHelper {
 
@@ -24,14 +26,12 @@ object NotificationHelper {
         }
     }
 
-    fun createSampleDataNotification(context: Context, title: String, message: String,
-                                     bigText: String, autoCancel: Boolean){
+    fun createSampleDataNotification(context: Context, notes: Notes, autoCancel: Boolean){
         val channelId = "${context.packageName}--${context.getString(R.string.app_name)}"
         val notificationBuilder = NotificationCompat.Builder(context, channelId).apply {
             setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
-            setContentTitle(title)
-            setContentText(message)
-            setStyle(NotificationCompat.BigTextStyle().bigText(bigText))
+            setContentTitle(notes.title)
+            setStyle(NotificationCompat.BigTextStyle().bigText(notes.description))
             priority = NotificationCompat.PRIORITY_DEFAULT
             setAutoCancel(autoCancel)
 
