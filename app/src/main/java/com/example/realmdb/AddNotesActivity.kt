@@ -213,10 +213,15 @@ class AddNotesActivity : AppCompatActivity(){
         val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
 
             var newMonth: String = month.toString()
+            var newDay: String = dayOfMonth.toString()
             if(month <= 9){
                 newMonth = "0$month"
             }
-            editDate.text  = dayOfMonth.toString().plus("/").plus(newMonth).plus("/").plus(year)
+
+            if (dayOfMonth <= 9){
+                newDay = "0$dayOfMonth"
+            }
+            editDate.text  = newDay.plus("/").plus(newMonth).plus("/").plus(year)
         }, myYear, myMonth, myDay)
         return dpd.show()
     }
